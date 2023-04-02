@@ -1,6 +1,7 @@
 import { Flushable } from "../interface/flush";
 import { Observer } from "../interface/observer";
 import { LogLevel } from "./type/level";
+import * as fs from 'fs';
 
 export interface LogData {
   level: LogLevel;
@@ -37,11 +38,11 @@ export class ConsoleLoggor implements Observer<string> {
 }
 
 export class FileLogger implements Observer<string>, Flushable {
-  private fs: any;
+  private writeStream: fs.WriteStream;
   private buffer: string[] = [];
 
   constructor(private filename: string, private limit: number = 20) {
-    this.fs = require("fs");
+    this.writeStream = fs.createWriteStream(this.filename, { flags: 'a' });
   }
 
   public update(log: string) {
@@ -52,11 +53,15 @@ export class FileLogger implements Observer<string>, Flushable {
   }
 
   private async save(log: string) {
-    await this.fs.appendFile(this.filename, log);
+    this.writeStream.write(log);
   }
 
   public flush() {
     this.buffer.forEach((log) => this.save(log));
     this.buffer = [];
+  }
+
+  public end() {
+    this.writeStream.end();
   }
 }
