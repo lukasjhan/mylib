@@ -57,7 +57,8 @@ export class FileLogger implements Observer<string>, Flushable {
   }
 
   public flush() {
-    this.buffer.forEach((log) => this.save(log));
+    const logData = this.buffer.join('\n');
+    this.save(logData);
     this.buffer = [];
   }
 
