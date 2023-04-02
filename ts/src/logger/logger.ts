@@ -1,4 +1,4 @@
-import { Observer } from "../data/observer";
+import { Observer } from "../interface/observer";
 
 export interface LogData {
   level: string;
