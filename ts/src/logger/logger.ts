@@ -22,13 +22,13 @@ export class Logger {
   }
 }
 
-export class ConsoleObserver implements Observer<LogData> {
+export class ConsoleLoggor implements Observer<LogData> {
   public update(data: LogData) {
     console.log(`[${data.level}] ${data.message}`);
   }
 }
 
-export class FileObserver implements Observer<LogData> {
+export class FileLogger implements Observer<LogData> {
   private fs: any;
 
   constructor(private filename: string) {
