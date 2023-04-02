@@ -1,7 +1,8 @@
 import { Observer } from "../interface/observer";
+import { LogLevel } from "./type/level";
 
 export interface LogData {
-  level: string;
+  level: LogLevel;
   message: string;
 };
 
@@ -16,8 +17,7 @@ export class Logger {
     this.observers = this.observers.filter((o) => o !== observer);
   }
 
-  public log(level: string, message: string) {
-    const data: LogData = { level, message };
+  public log(data: LogData) {
     this.observers.forEach((observer) => observer.update(data));
   }
 }
