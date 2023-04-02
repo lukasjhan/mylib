@@ -1,0 +1,20 @@
+{
+  "name": "aws",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf node_modules && yarn" 
+  },
+  "dependencies": {
+    "@aws-sdk/client-api-gateway": "^3.105.0",
+    "@aws-sdk/client-cloudfront": "^3.107.0",
+    "@aws-sdk/client-route-53": "^3.107.0",
+    "@aws-sdk/client-s3": "^3.105.0",
+    "@aws-sdk/client-sqs": "^3.105.0",
+    "typescript": "^5.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "ts-node": "^10.9.1"
+  }
+}
