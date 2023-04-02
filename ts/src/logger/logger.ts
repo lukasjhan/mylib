@@ -1,7 +1,5 @@
-import { Flushable } from "../interface/flush";
 import { Observer } from "../interface/observer";
 import { LogLevel } from "./type/level";
-import * as fs from 'fs';
 
 export interface LogData {
   level: LogLevel;
@@ -28,41 +26,5 @@ export class Logger {
     const now = new Date();
     const logString = `[${now.toISOString()}] [${level.toUpperCase()}] ${message}`;
     return logString;
-  }
-}
-
-export class ConsoleLoggor implements Observer<string> {
-  public update(log: string) {
-    console.log(log);
-  }
-}
-
-export class FileLogger implements Observer<string>, Flushable {
-  private writeStream: fs.WriteStream;
-  private buffer: string[] = [];
-
-  constructor(private filename: string, private limit: number = 20) {
-    this.writeStream = fs.createWriteStream(this.filename, { flags: 'a' });
-  }
-
-  public update(log: string) {
-    this.buffer.push(log);
-    if (this.buffer.length >= this.limit) {
-      this.flush();
-    }
-  }
-
-  private async save(log: string) {
-    this.writeStream.write(log);
-  }
-
-  public flush() {
-    const logData = this.buffer.join('\n');
-    this.save(logData);
-    this.buffer = [];
-  }
-
-  public end() {
-    this.writeStream.end();
   }
 }
