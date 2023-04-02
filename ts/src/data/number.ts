@@ -29,3 +29,19 @@ export function clamp(number: number, min = 0, max = 1): number {
 export function positiveModulo(x: number, n: number) {
   return ((x % n) + n) % n;
 }
+
+export function gcd(a: number, b: number): number {
+  if (b === 0) {
+    return a;
+  } else {
+    return gcd(b, a % b);
+  }
+}
+
+export function reduceFraction(
+  numerator: number,
+  denominator: number
+): [number, number] {
+  const divisor = gcd(numerator, denominator);
+  return [numerator / divisor, denominator / divisor];
+}
