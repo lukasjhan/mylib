@@ -45,6 +45,3 @@ export function reduceFraction(
   const divisor = gcd(numerator, denominator);
   return [numerator / divisor, denominator / divisor];
 }
-
-console.log(round(1.23456789, 3)); // 1.235
-console.log(round(1.23456789, 0)); // 1.235
