@@ -52,8 +52,6 @@ export function normalizePath(path: string): string {
   return joinPath(newParts);
 }
 
-console.log(normalizePath('/a/b/.././../../a/b/../b/c'));
-
 export function isAbsolute(path: string): boolean {
   return path.startsWith('/');
 }
