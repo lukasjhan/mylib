@@ -39,9 +39,7 @@ export const authorizer = async (event: any, context: any) => {
   return { context: { token: "unknown" } };
 };
 
-const deleteUser = async (
-  uid: string,
-): Promise<void> => {
+const deleteUser = async (uid: string): Promise<void> => {
   init();
   return new Promise((resolve, reject) => {
     auth()
