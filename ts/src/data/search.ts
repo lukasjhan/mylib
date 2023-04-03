@@ -2,7 +2,7 @@ export function binarySearch<T, E>(
   arr: T[],
   value: E,
   compare: (arrValue: T, compElement: E) => number,
-  fallbackLowerBoundIndex: boolean = false,
+  findLowerBound: boolean = false,
 ): number | undefined {
   let left = 0,
     right = arr.length - 1,
@@ -23,5 +23,5 @@ export function binarySearch<T, E>(
     return left;
   }
 
-  return fallbackLowerBoundIndex ? left : undefined;
+  return findLowerBound ? left : undefined;
 };
